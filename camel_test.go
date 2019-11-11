@@ -1,12 +1,11 @@
 // Copyright (c) 2017, A. Stoewer <adrian.stoewer@rz.ifi.lmu.de>
 // All rights reserved.
 
-package strcase_test
+package strcase
 
 import (
 	"testing"
 
-	"github.com/stoewer/go-strcase"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -15,6 +14,7 @@ func TestUpperCamelCase(t *testing.T) {
 		"":                      "",
 		"f":                     "F",
 		"foo":                   "Foo",
+		"fooBar":                "FooBar",
 		" foo_bar\n":            "FooBar",
 		" foo-bar\t":            "FooBar",
 		" foo bar\r":            "FooBar",
@@ -25,7 +25,7 @@ func TestUpperCamelCase(t *testing.T) {
 	}
 
 	for in, out := range data {
-		converted := strcase.UpperCamelCase(in)
+		converted := UpperCamelCase(in)
 		assert.Equal(t, out, converted)
 	}
 }
@@ -35,6 +35,7 @@ func TestLowerCamelCase(t *testing.T) {
 		"":                      "",
 		"F":                     "f",
 		"foo":                   "foo",
+		"FooBar":                "fooBar",
 		" foo_bar\n":            "fooBar",
 		" foo-bar\t":            "fooBar",
 		" foo bar\r":            "fooBar",
@@ -45,7 +46,7 @@ func TestLowerCamelCase(t *testing.T) {
 	}
 
 	for in, out := range data {
-		converted := strcase.LowerCamelCase(in)
+		converted := LowerCamelCase(in)
 		assert.Equal(t, out, converted)
 	}
 }
